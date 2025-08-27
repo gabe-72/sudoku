@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Sudoku:
     # Binary encoding of the numbers
     # this allows us to easily compute whether a row has duplicates or not by simply adding up the rows
@@ -29,21 +30,24 @@ class Sudoku:
     _SUBGRID_LENGTH = _SUBGRID_SHAPE[0]
 
     # Base Sudoku grid (is valid)
-    SUDOKU_GRID = np.array([
-        [_1, _2, _3, _4, _5, _6, _7, _8, _9],
-        [_7, _8, _9, _1, _2, _3, _4, _5, _6],
-        [_4, _5, _6, _7, _8, _9, _1, _2, _3],
-        [_9, _1, _2, _3, _4, _5, _6, _7, _8],
-        [_6, _7, _8, _9, _1, _2, _3, _4, _5],
-        [_3, _4, _5, _6, _7, _8, _9, _1, _2],
-        [_8, _9, _1, _2, _3, _4, _5, _6, _7],
-        [_5, _6, _7, _8, _9, _1, _2, _3, _4],
-        [_2, _3, _4, _5, _6, _7, _8, _9, _1],
-    ], dtype=np.uint16)
+    SUDOKU_GRID = np.array(
+        [
+            [_1, _2, _3, _4, _5, _6, _7, _8, _9],
+            [_7, _8, _9, _1, _2, _3, _4, _5, _6],
+            [_4, _5, _6, _7, _8, _9, _1, _2, _3],
+            [_9, _1, _2, _3, _4, _5, _6, _7, _8],
+            [_6, _7, _8, _9, _1, _2, _3, _4, _5],
+            [_3, _4, _5, _6, _7, _8, _9, _1, _2],
+            [_8, _9, _1, _2, _3, _4, _5, _6, _7],
+            [_5, _6, _7, _8, _9, _1, _2, _3, _4],
+            [_2, _3, _4, _5, _6, _7, _8, _9, _1],
+        ],
+        dtype=np.uint16,
+    )
 
     def __init__(self, shuffled: bool = True):
         # Shuffle the grid if required
-        if (shuffled):
+        if shuffled:
             self.shuffle()
 
     def _is_valid(self) -> bool:
@@ -64,7 +68,7 @@ class Sudoku:
         # Check dimensions
         if self.SUDOKU_GRID.shape != self._GRID_SHAPE:
             # Should never happen
-            raise Exception(f'Sudoku Grid shape invalid {self.SUDOKU_GRID.shape}')
+            raise Exception(f"Sudoku Grid shape invalid {self.SUDOKU_GRID.shape}")
 
         # Check rows, see if every row contains all the numbers
         # equivalent to summing the rows, but for a standard grid (9x9), this is faster
@@ -81,8 +85,10 @@ class Sudoku:
         # Reshape the grid into (subgrid rows, num of rows in each subgrid, subgrid cols, num of cols in each subgrid)
         # indicies 0 -> subgrid row; 1 -> the row number in the subgrid; 2 -> subgrid col; 3 -> the col number in the subgrid
         reshaped_grid = self.SUDOKU_GRID.reshape(
-            self._GRID_LENGTH // self._SUBGRID_LENGTH, self._SUBGRID_LENGTH,
-            self._GRID_LENGTH // self._SUBGRID_LENGTH, self._SUBGRID_LENGTH
+            self._GRID_LENGTH // self._SUBGRID_LENGTH,
+            self._SUBGRID_LENGTH,
+            self._GRID_LENGTH // self._SUBGRID_LENGTH,
+            self._SUBGRID_LENGTH,
         )
 
         # Sum the rows in the subgrids and the columns in the subgrid
@@ -106,7 +112,8 @@ class Sudoku:
         """
         pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sudoku = Sudoku(False)
 
     print(sudoku.SUDOKU_GRID)
