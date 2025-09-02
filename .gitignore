@@ -8,5 +8,8 @@ ENV/
 env.bak/
 venv.bak/
 
+# Builds
+dist/
+
 # VSCode
 .vscode/
