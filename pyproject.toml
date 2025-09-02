@@ -1,0 +1,23 @@
+[project]
+name = "sudokuz"
+version = "0.0.1"
+authors = [
+    { name="Gabe Chung", email="lilaccc72@gmail.com" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/gabe-72/sudokuz"
+Issues = "https://github.com/gabe-72/sudokuz/issues"
+
+[build-system]
+requires = ["hatchling >= 1.27"]
+build-backend = "hatchling.build"
