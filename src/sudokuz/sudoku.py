@@ -45,9 +45,9 @@ class Sudoku:
         dtype=np.uint16,
     )
 
-    def __init__(self, shuffled: bool = True):
-        # Shuffle the grid if required
-        if shuffled:
+    def __init__(self, debug: bool = False):
+        # Shuffle the grid if not in debug mode
+        if not debug:
             self.shuffle()
 
     def _is_valid(self) -> bool:
